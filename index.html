@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Phaser Game</title>
+    <script src="js/phaser.2.4.2.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        #game-container {
+            position: relative;
+            width: 800px;
+            height: 150px;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+        }
+
+        #game1-text {
+            position: relative;
+            top: -100px;
+            left: 270px;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+        }
+
+        #game2-text {
+            position: relative;
+            top: -100px;
+            right: -670px;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game1-text">Juego 1</div>
+    <div id="game2-text">Juego 2</div>
+    <div id="game-container"></div>
+
+    <script>
+        var game = new Phaser.Game(800, 150, Phaser.AUTO, 'game-container', { preload: preload, create: create });
+
+        function preload() {
+            //Cargar la imagen del botón inicio 
+            game.load.image('startButton', 'img/start.png');
+        }
+
+        function create() {
+            game.stage.backgroundColor = '#ffffff'; // Color blanco
+
+            // Crear botón de inicio para abrir "escena1.html"
+            var startButton = game.add.button(game.world.centerX - 235, game.world.centerY, 'startButton', openScene1, this);
+            startButton.anchor.setTo(0.5);
+            // Crear botón para abrir "game.html"
+            var gameButton = game.add.button(game.world.centerX + 235, game.world.centerY, 'startButton', openGameScene, this);
+            gameButton.anchor.setTo(0.5);
+        }
+
+        function openScene1() {
+            // Redirigir a "escena1.html" al hacer clic en el botón de inicio
+            window.location.href = 'escena1.html';
+        }
+
+        function openGameScene() {
+             // Redirigir a "game.html" al hacer clic en el botón de juego
+            window.location.href = 'game.html';
+        }
+    </script>
+</body>
+</html>
